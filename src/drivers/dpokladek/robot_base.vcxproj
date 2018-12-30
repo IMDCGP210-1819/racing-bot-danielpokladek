@@ -174,7 +174,11 @@
   <ItemGroup>
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="Decorator.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="robot_base.cpp" />
+    <ClCompile Include="Sequence.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="robot_base.def">
@@ -184,6 +188,10 @@
   <ItemGroup>
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="BehaviorTree.h" />
+    <ClInclude Include="Composite.h" />
+    <ClInclude Include="Decorator.h" />
+    <ClInclude Include="Filter.h" />
+    <ClInclude Include="Sequence.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\robottools\robottools.vcxproj">

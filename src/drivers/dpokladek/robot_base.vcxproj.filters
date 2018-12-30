@@ -1,11 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="robot_base.cpp" />
     <ClCompile Include="BehaviorTree.cpp">
       <Filter>BehaviorTree\CPP</Filter>
     </ClCompile>
     <ClCompile Include="Behavior.cpp">
+      <Filter>BehaviorTree\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorator.cpp">
+      <Filter>BehaviorTree\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Composite.cpp">
+      <Filter>BehaviorTree\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_base.cpp" />
+    <ClCompile Include="Sequence.cpp">
+      <Filter>BehaviorTree\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Filter.cpp">
       <Filter>BehaviorTree\CPP</Filter>
     </ClCompile>
   </ItemGroup>
@@ -28,6 +40,18 @@
       <Filter>BehaviorTree\Header</Filter>
     </ClInclude>
     <ClInclude Include="Behavior.h">
+      <Filter>BehaviorTree\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator.h">
+      <Filter>BehaviorTree\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite.h">
+      <Filter>BehaviorTree\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence.h">
+      <Filter>BehaviorTree\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
       <Filter>BehaviorTree\Header</Filter>
     </ClInclude>
   </ItemGroup>
