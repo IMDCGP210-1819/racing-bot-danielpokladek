@@ -1,8 +1,10 @@
 #pragma once
+#include "Behavior.h"
+
 class BehaviorTree
 {
 protected:
-	//Behavior* m_pRoot;
+	Behavior* m_pRoot;
 public:
 	/** Update method, used to traverse the BehaviorTree.
 	  * It also serves as the entry point to the tree. */

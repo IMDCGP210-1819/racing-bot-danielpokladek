@@ -174,10 +174,13 @@
   <ItemGroup>
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="Blackboard.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="Filter.cpp" />
+    <ClCompile Include="Parallel.cpp" />
     <ClCompile Include="robot_base.cpp" />
+    <ClCompile Include="Selector.cpp" />
     <ClCompile Include="Sequence.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +191,12 @@
   <ItemGroup>
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="BehaviorTree.h" />
+    <ClInclude Include="Blackboard.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="Decorator.h" />
     <ClInclude Include="Filter.h" />
+    <ClInclude Include="Parallel.h" />
+    <ClInclude Include="Selector.h" />
     <ClInclude Include="Sequence.h" />
   </ItemGroup>
   <ItemGroup>
