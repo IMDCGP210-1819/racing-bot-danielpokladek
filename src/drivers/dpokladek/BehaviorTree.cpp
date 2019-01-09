@@ -2,7 +2,7 @@
 
 
 
-void BehaviorTree::Tick()
+void BehaviorTree::tick()
 {
 
 }

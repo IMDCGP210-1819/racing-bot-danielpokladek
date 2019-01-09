@@ -16,8 +16,10 @@ protected:
 		{
 			Status s = (*m_CurrentChild)->tick();
 
-			if (s != BH_SUCCESS) return s;				// If child fails or keeps running, do the same
-			if (++m_CurrentChild == m_Children.end())	// Move on until we hit the end of the array
+			if (s != BH_SUCCESS)						// If child fails or keeps running, do the same
+				return s;								
+
+			if (++m_CurrentChild == m_Children.end())	// End of array, finished here
 				return BH_SUCCESS;
 		}
 		return BH_INVALID;								// Unexpected loop exit

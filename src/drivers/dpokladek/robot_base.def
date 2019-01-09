@@ -10,10 +10,10 @@
 ;    (at your option) any later version.                                 
 ;
 
-LIBRARY	robot_base
+LIBRARY	dpokladek
 
 SECTIONS .data READ WRITE
 
 EXPORTS
-	robot_base
+	dpokladek
 

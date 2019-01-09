@@ -91,8 +91,8 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2008_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\Release/robot_base.dll</OutputFile>
+      <AdditionalDependencies>tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2017_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release/dpokladek.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../export/lib;../../windows/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EnableUAC>false</EnableUAC>
@@ -146,8 +146,8 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2008_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\Debug/robot_base.dll</OutputFile>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2017_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Debug/dpokladek.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../export/libd;../../windows/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EnableUAC>false</EnableUAC>
@@ -172,16 +172,19 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="Blackboard.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="Filter.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Parallel.cpp" />
     <ClCompile Include="robot_base.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="Sequence.cpp" />
+    <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="robot_base.def">
@@ -189,15 +192,18 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="Blackboard.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="Decorator.h" />
     <ClInclude Include="Filter.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Parallel.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="Sequence.h" />
+    <ClInclude Include="Task.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\robottools\robottools.vcxproj">

@@ -31,6 +31,8 @@
 #include <robottools.h>
 #include <robot.h>
 
+#include "AI.h"
+
 static tTrack	*curTrack;
 
 static void initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSituation *s); 
@@ -45,11 +47,11 @@ static int  InitFuncPt(int index, void *pt);
  * Module entry point  
  */ 
 extern "C" int 
-robot_base(tModInfo *modInfo) 
+dpokladek(tModInfo *modInfo) 
 {
     memset(modInfo, 0, 10*sizeof(tModInfo));
 
-    modInfo->name    = strdup("robot_base");		/* name of the module (short) */
+    modInfo->name    = strdup("dpokladek");		/* name of the module (short) */
     modInfo->desc    = strdup("");	/* description of the module (can be long) */
     modInfo->fctInit = InitFuncPt;		/* init function */
     modInfo->gfId    = ROB_IDENT;		/* supported framework version */
