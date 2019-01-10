@@ -172,6 +172,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AccelerateNode.cpp" />
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
@@ -192,6 +193,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccelerateNode.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="BehaviorTree.h" />

@@ -34,6 +34,7 @@
 #include "AI.h"
 
 static tTrack	*curTrack;
+AI *ai;
 
 static void initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSituation *s); 
 static void newrace(int index, tCarElt* car, tSituation *s); 
@@ -89,14 +90,18 @@ initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSitu
 static void  
 newrace(int index, tCarElt* car, tSituation *s) 
 { 
+	ai = new AI();
+	ai->initTree();
 } 
 
 /* Drive during race. */
 static void  
 drive(int index, tCarElt* car, tSituation *s) 
 { 
-    memset((void *)&car->ctrl, 0, sizeof(tCarCtrl)); 
-    car->ctrl.brakeCmd = 1.0; /* all brakes on ... */ 
+	ai->drive(car);
+
+    //memset((void *)&car->ctrl, 0, sizeof(tCarCtrl)); 
+    //car->ctrl.brakeCmd = 1.0; /* all brakes on ... */ 
     /*  
      * add the driving code here to modify the 
      * car->_steerCmd 
@@ -117,5 +122,6 @@ endrace(int index, tCarElt *car, tSituation *s)
 static void
 shutdown(int index)
 {
+	delete ai;
 }
 
