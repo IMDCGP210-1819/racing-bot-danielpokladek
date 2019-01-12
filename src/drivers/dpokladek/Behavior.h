@@ -11,12 +11,14 @@ public:
 		BH_ABORTED
 	};
 
-	virtual void onInitialize();			// Called once, immediately before behavior's update method
 	virtual Status update() = 0;			// Called exactly once each time the behavior tree updates, until it singnals it has terminated
-	virtual void onTerminate(Status);		// Called once, immediately after the previous update signals termination
+
+	virtual void onInitialize() {}			// Called once, immediately before behavior's update method
+	virtual void onTerminate(Status) {}		// Called once, immediately after the previous update signals termination
 
 	Behavior() : m_eStatus(BH_INVALID) {}
 	virtual ~Behavior() {}
+	
 	Status tick()
 	{
 		if (m_eStatus != BH_RUNNING)

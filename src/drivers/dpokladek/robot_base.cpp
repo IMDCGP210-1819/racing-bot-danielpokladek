@@ -32,9 +32,10 @@
 #include <robot.h>
 
 #include "AI.h"
+#include "AccelerateNode.h"
 
 static tTrack	*curTrack;
-AI *ai;
+AI *_ai;
 
 static void initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSituation *s); 
 static void newrace(int index, tCarElt* car, tSituation *s); 
@@ -90,15 +91,17 @@ initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSitu
 static void  
 newrace(int index, tCarElt* car, tSituation *s) 
 { 
-	ai = new AI();
-	ai->initTree();
+	_ai = new AI();
+	_ai->initBlackboard();
+	_ai->initTree();
+	_ai->ai = _ai;
 } 
 
 /* Drive during race. */
 static void  
 drive(int index, tCarElt* car, tSituation *s) 
 { 
-	ai->drive(car);
+	_ai->drive(car);
 
     //memset((void *)&car->ctrl, 0, sizeof(tCarCtrl)); 
     //car->ctrl.brakeCmd = 1.0; /* all brakes on ... */ 
@@ -122,6 +125,6 @@ endrace(int index, tCarElt *car, tSituation *s)
 static void
 shutdown(int index)
 {
-	delete ai;
+	delete _ai;
 }
 

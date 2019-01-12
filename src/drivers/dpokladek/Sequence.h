@@ -1,28 +1,38 @@
 #pragma once
-
 #include "Composite.h"
 
 class Sequence : public Composite
 {
 protected:
-	Behaviors::iterator m_CurrentChild;
+	virtual ~Sequence()
+	{
+
+	}
+
 	virtual void onInitialize() override
 	{
 		m_CurrentChild = m_Children.begin();
 	}
 	virtual Status update() override
 	{
-		while (true)									// Keep going until a child behavior says it's running
+		// Keep going until a child behavior says it's running
+		for (;;)
 		{
 			Status s = (*m_CurrentChild)->tick();
 
-			if (s != BH_SUCCESS)						// If child fails or keeps running, do the same
+			// If child fails or keeps running, do the same
+			if (s != BH_SUCCESS)
 				return s;								
 
-			if (++m_CurrentChild == m_Children.end())	// End of array, finished here
+			// End of array, finished here
+			if (++m_CurrentChild == m_Children.end())
 				return BH_SUCCESS;
 		}
-		return BH_INVALID;								// Unexpected loop exit
+
+		// Unexpected loop exit
+		return BH_INVALID;
 	}
+
+	Behaviors::iterator m_CurrentChild;
 };
 

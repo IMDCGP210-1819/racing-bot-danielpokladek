@@ -69,9 +69,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BehaviorTree.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
     <ClInclude Include="Behavior.h">
       <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
     </ClInclude>
@@ -107,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="AccelerateNode.h">
       <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree.h">
+      <Filter>AI\BehaviorTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
