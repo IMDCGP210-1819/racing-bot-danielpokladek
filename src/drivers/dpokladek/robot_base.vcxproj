@@ -172,20 +172,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AccelerateNode.cpp" />
     <ClCompile Include="AI.cpp" />
-    <ClCompile Include="Behavior.cpp" />
-    <ClCompile Include="BehaviorTree.cpp" />
-    <ClCompile Include="Blackboard.cpp" />
-    <ClCompile Include="Composite.cpp" />
-    <ClCompile Include="Decorator.cpp" />
-    <ClCompile Include="Filter.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Parallel.cpp" />
     <ClCompile Include="robot_base.cpp" />
-    <ClCompile Include="Selector.cpp" />
-    <ClCompile Include="Sequence.cpp" />
-    <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="robot_base.def">
@@ -198,14 +186,19 @@
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="Blackboard.h" />
+    <ClInclude Include="BrakeNode.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="Decorator.h" />
     <ClInclude Include="Filter.h" />
-    <ClInclude Include="Node.h" />
+    <ClInclude Include="KeepDrivingNode.h" />
     <ClInclude Include="Parallel.h" />
+    <ClInclude Include="Succeder.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="Sequence.h" />
-    <ClInclude Include="Task.h" />
+    <ClInclude Include="ShiftDownNode.h" />
+    <ClInclude Include="ShiftUpNode.h" />
+    <ClInclude Include="ToRaceLineNode.h" />
+    <ClInclude Include="TreeNodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\robottools\robottools.vcxproj">

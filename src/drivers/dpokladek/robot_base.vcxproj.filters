@@ -1,45 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="BehaviorTree.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Behavior.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Decorator.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Composite.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
     <ClCompile Include="robot_base.cpp" />
-    <ClCompile Include="Sequence.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Filter.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Parallel.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Selector.cpp">
-      <Filter>AI\BehaviorTree\Behavior Blocks\CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Blackboard.cpp">
-      <Filter>AI\BehaviorTree\Blackboard</Filter>
-    </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Task.cpp">
-      <Filter>AI\BehaviorTree</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>AI\BehaviorTree</Filter>
-    </ClCompile>
-    <ClCompile Include="AccelerateNode.cpp">
-      <Filter>AI\BehaviorTree\Tree States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,55 +22,64 @@
     <Filter Include="AI\BehaviorTree\Behavior Blocks">
       <UniqueIdentifier>{a513f157-1db6-4c35-9872-8a13f04f613a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AI\BehaviorTree\Behavior Blocks\Header">
-      <UniqueIdentifier>{b8a89e6e-1642-4151-9a7c-f8f57765f9ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AI\BehaviorTree\Behavior Blocks\CPP">
-      <UniqueIdentifier>{6cea1a06-b655-4d49-8928-30ddd9eaf0b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="AI\BehaviorTree\Tree States">
       <UniqueIdentifier>{022ae73f-74ba-424e-a264-9e351fb1f0ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Behavior.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Decorator.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Filter.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Selector.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Parallel.h">
-      <Filter>AI\BehaviorTree\Behavior Blocks\Header</Filter>
-    </ClInclude>
     <ClInclude Include="Blackboard.h">
       <Filter>AI\BehaviorTree\Blackboard</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>AI</Filter>
     </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>AI\BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>AI\BehaviorTree</Filter>
-    </ClInclude>
     <ClInclude Include="AccelerateNode.h">
       <Filter>AI\BehaviorTree\Tree States</Filter>
     </ClInclude>
+    <ClInclude Include="BrakeNode.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="ShiftDownNode.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="ShiftUpNode.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="ToRaceLineNode.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="KeepDrivingNode.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNodes.h">
+      <Filter>AI\BehaviorTree</Filter>
+    </ClInclude>
     <ClInclude Include="BehaviorTree.h">
       <Filter>AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Parallel.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Selector.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Succeder.h">
+      <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

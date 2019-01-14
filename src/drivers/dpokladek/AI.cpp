@@ -7,19 +7,35 @@
 
 #include "Sequence.h"
 #include "Selector.h"
-#include "AccelerateNode.h"
+#include "Succeder.h"
 
-//#include "Behavior.h"
-//class AccelerationNode : public Behavior
-//{
-//	virtual Status update() override {
-//		// access blackboard and set acceleration command value to x.
-//	}
-//};
+#include "TreeNodes.h"
 
-Selector *root;
-Selector *accelSel;
-AccelerateNode *accelNode;
+// ---- BEHAVIOR TREE
+Sequence	*root;
+
+// ---- Drive Sequences
+Sequence	*driveSequence;
+
+// ---- Control Acceleration
+Succeder		*driveSucceder;
+Selector		*driveSelector;
+AccelerateNode	*accelNode;
+BrakeNode		*brakeNode;
+
+// ---- Control Steering
+Succeder		*steerSucceder;
+Selector		*steerSelector;
+ToRaceLineNode	*racingLineNode;
+KeepDrivingNode	*keepDrivingNode;
+
+// ---- Control Gears
+Succeder		*gearSucceder;
+Selector		*gearSelector;
+ShiftUpNode		*shiftUpNode;
+ShiftDownNode	*shiftDownNode;
+
+
 
 AI::AI()
 {
@@ -35,18 +51,37 @@ void AI::initTree()
 {
 	std::cout << "AI -> Initializing BehaviorTree.\n";
 
-	/* ROOT OF THE TREE */
-	//Selector *root = new Selector();
+	/* ROOT OF BEHAVIOR TREE */
+	root = new Sequence();
 
-	root = new Selector();
+	/* DRIVE SEQUENCE */
+	driveSequence	= new Sequence();
 
-	// Create the accelerate sequence :
-	//Sequence *accelSeq = new Sequence();
-	accelSel = new Selector();
-	accelNode = new AccelerateNode();
-	accelSel->addChild(accelNode);
+	// ---- ACCELERATION
+	driveSelector	= new Selector();
+	accelNode		= new AccelerateNode(this);
+	brakeNode		= new BrakeNode(this);
 
-	root->addChild(accelSel);
+	driveSelector->addChild(accelNode);
+	driveSelector->addChild(brakeNode);
+
+	driveSucceder	= new Succeder(driveSelector);
+
+	// ---- TURNING
+	steerSelector	= new Selector();
+	keepDrivingNode = new KeepDrivingNode(this);
+	racingLineNode	= new ToRaceLineNode(this);
+
+	steerSelector->addChild(keepDrivingNode);
+
+	steerSucceder	= new Succeder(steerSelector);
+
+
+	// ---- ADD BRANCHES
+	driveSequence->addChild(driveSucceder);
+	driveSequence->addChild(steerSucceder);
+	
+	root->addChild(driveSequence);
 
 	std::cout << "AI -> BehaviorTree initialized.\n";
 }
@@ -58,6 +93,7 @@ void AI::initBlackboard()
 	/* Initialize all the variables that will be used by the car, such as the acceleration amount,
 		brakes amount, and the current gear the car should be in. */
 
+	
 	blackboard.insert(std::pair<std::string, BlackboardBaseType*>
 		(gear, new BlackboardIntType(1)));
 	blackboard.insert(std::pair<std::string, BlackboardBaseType*>
@@ -71,7 +107,7 @@ void AI::initBlackboard()
 
 void AI::drive(tCarElt* car)
 {
-	//root->tick();
+	root->tick();
 
 	// Clear the car's memory.
 	memset((void *)&car->ctrl, 0, sizeof(tCarCtrl));

@@ -1,4 +1,8 @@
 #pragma once
+
+#include <robot.h>
+#include <robottools.h>
+
 class Blackboard
 {
 public:
@@ -44,5 +48,16 @@ public:
 
 private:
 	float value;
+};
+
+class BlackboardCarType : public BlackboardBaseType
+{
+public:
+	BlackboardCarType(tCarElt car) : car(car) {}
+	tCarElt GetCar() { return car; }
+	void SetCar(tCarElt _car) { car = _car; }
+
+private:
+	tCarElt car;
 };
 

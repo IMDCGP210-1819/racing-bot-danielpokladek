@@ -95,6 +95,7 @@ newrace(int index, tCarElt* car, tSituation *s)
 	_ai->initBlackboard();
 	_ai->initTree();
 	_ai->ai = _ai;
+	_ai->carReference = car;
 } 
 
 /* Drive during race. */

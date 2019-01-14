@@ -3,17 +3,20 @@
 root (base) :
 	|-> (decorator) some sort of reset node?
 		|-> (sequence) Accel/Brake : Turning : Gears
-			|-> (selector) Accel/Brake
-				|-> (leaf) Accelerate Node	- accelerate if below max speed of next segment
-				|-> (leaf) Brake Node		- brake if above max speed of the next segment
+			|-> (decorator) Return true, so sequence doesn't fail
+				|-> (selector) Accel/Brake
+					|-> (leaf) Accelerate Node	- accelerate if below max speed of next segment
+					|-> (leaf) Brake Node		- brake if above max speed of the next segment
 			
-			|-> (selector) Turning
-				|-> (leaf) Turn Towards Racing Line Node	- calculate the angle towards racing line
-				|-> (leaf) Keep The Same Angle Node			- at the racing line, continue the same way
+			|-> (decorator) Return true, so sequence doesn't fail
+				|-> (selector) Turning
+					|-> (leaf) Turn Towards Racing Line Node	- calculate the angle towards racing line
+					|-> (leaf) Keep The Same Angle Node			- at the racing line, continue the same way
 			
-			|-> (selector) Gears
-				|-> (leaf) Gear UP		- at rev limiter, gear up
-				|-> (leaf) Gaer Down	- revs too low, gear down
+			|-> (decorator) Return true, so sequence doesn't fail
+				|-> (selector) Gears
+					|-> (leaf) Gear UP		- at rev limiter, gear up
+					|-> (leaf) Gaer Down	- revs too low, gear down
 
 
 IN MY HEAD:

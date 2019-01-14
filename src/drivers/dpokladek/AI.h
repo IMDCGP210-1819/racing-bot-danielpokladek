@@ -17,15 +17,16 @@ public:
 	void drive(tCarElt* car);
 
 	std::map<std::string, BlackboardBaseType*> blackboard;
+	tCarElt* carReference;
 
-	const std::string accel = "accelAmnt";
+	/* BLACKBOARD KEYS */
+	const std::string gear	= "gearValue";
+	const std::string brake = "brakeValue";
+	const std::string accel = "accelValue";
+	const std::string car	= "carRef";
 	AI *ai;
 
 protected:
-	/* BLACKBOARD KEYS */
-	const std::string gear = "currGear";
-	const std::string brake = "brakeAmnt";
-
 	const std::string initFinished = "initFinished";
 
 	float brakeAmnt = 0.0f;

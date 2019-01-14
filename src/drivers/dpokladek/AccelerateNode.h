@@ -3,8 +3,12 @@
 #include "Behavior.h"
 #include "AI.h"
 
+#include <stdio.h>
+#include <iostream>
+
 class AccelerateNode : public Behavior
 {
+	AI *ai;
 	int m_iInitializeCalled;
 	int m_iTerminateCalled;
 	int m_iUpdateCalled;
@@ -12,14 +16,13 @@ class AccelerateNode : public Behavior
 	Status m_eTerminateStatus;
 
 public:
-	AI ai;
-
-	AccelerateNode()
+	AccelerateNode(AI *_ai)
 		: m_iInitializeCalled(0)
 		, m_iTerminateCalled(0)
 		, m_iUpdateCalled(0)
 		, m_eReturnStatus(BH_RUNNING)
 		, m_eTerminateStatus(BH_INVALID)
+		, ai(_ai)
 	{}
 
 	virtual ~AccelerateNode()
@@ -29,6 +32,7 @@ public:
 
 	virtual void onInitialize()
 	{
+		std::cout << "Accel init" << std::endl;
 		++m_iInitializeCalled;
 	}
 
@@ -42,8 +46,9 @@ public:
 	{
 		++m_iUpdateCalled;
 
-		BlackboardFloatType *accelEntry = (BlackboardFloatType*)ai.blackboard.at(ai.accel);
-		accelEntry->SetValue(1.0f);
+		std::cout << "AccelNode\n";
+		BlackboardFloatType *accelEntry = (BlackboardFloatType*)ai->blackboard.at(ai->accel);
+		accelEntry->SetValue(0.3f);
 
 		return m_eReturnStatus;
 	}
