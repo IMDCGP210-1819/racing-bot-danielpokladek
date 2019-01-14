@@ -1,0 +1,42 @@
+-- Behavior Tree's plan --
+
+root (base) :
+	|-> (decorator) some sort of reset node?
+		|-> (sequence) Accel/Brake : Turning : Gears
+			|-> (selector) Accel/Brake
+				|-> (leaf) Accelerate Node	- accelerate if below max speed of next segment
+				|-> (leaf) Brake Node		- brake if above max speed of the next segment
+			
+			|-> (selector) Turning
+				|-> (leaf) Turn Towards Racing Line Node	- calculate the angle towards racing line
+				|-> (leaf) Keep The Same Angle Node			- at the racing line, continue the same way
+			
+			|-> (selector) Gears
+				|-> (leaf) Gear UP		- at rev limiter, gear up
+				|-> (leaf) Gaer Down	- revs too low, gear down
+
+
+IN MY HEAD:
+	The sequence will run the beahvior tree, in order it will check for the acceleration/braking, turning and the gears.
+	First it will check if we need to accelerate or brake (according to next segment), and adjust the variables accordingly.
+	Second it will check the turning, and if we need to move towards the racing line or we can continue the way we are going.
+	Third it will check the gears, if we are reving high/low change the gears accordingly. This should drive the car around?
+
+NODES:
+
+AccelerateNode	:	calculate if we need to accelerate, return success and set brakeVal & accelVal to calculation
+					else return failure
+
+BrakeNode		:	calculate if we need to brake, set success and set brakeVal & accelVal to calculation
+					else return failure
+
+TowardsLineNode	:	calculate if we need to turn towards racing line, if we do set it on blackboard, return success
+					else return failure
+
+KeepDrivingNode	:	keep the same 'turnAngle' as we are within the racing line limits
+
+GearUPNode		:	calculate if we need to gear up, return success
+					else return failure
+
+GearDownNode	:	calculate if we need to gear down, return success
+					else return failure

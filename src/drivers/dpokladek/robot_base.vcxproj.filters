@@ -109,4 +109,7 @@
       <Filter>AI\BehaviorTree</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Notes.txt" />
+  </ItemGroup>
 </Project>
