@@ -81,6 +81,9 @@
     <ClInclude Include="Succeder.h">
       <Filter>AI\BehaviorTree\Behavior Blocks</Filter>
     </ClInclude>
+    <ClInclude Include="SteeringClass.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Notes.txt" />

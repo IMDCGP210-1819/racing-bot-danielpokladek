@@ -4,6 +4,7 @@
 
 #include "KeepDrivingNode.h"
 #include "ToRaceLineNode.h"
+#include "SteeringClass.h"
 
 #include "ShiftUpNode.h"
 #include "ShiftDownNode.h"

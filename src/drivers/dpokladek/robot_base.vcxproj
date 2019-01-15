@@ -192,6 +192,7 @@
     <ClInclude Include="Filter.h" />
     <ClInclude Include="KeepDrivingNode.h" />
     <ClInclude Include="Parallel.h" />
+    <ClInclude Include="SteeringClass.h" />
     <ClInclude Include="Succeder.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="Sequence.h" />

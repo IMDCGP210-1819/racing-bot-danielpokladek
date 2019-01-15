@@ -8,6 +8,15 @@
 class BrakeNode : public Behavior
 {
 	AI *ai;
+	tCarElt *car;
+	tTrackSeg *segptr;
+
+	float currentSpeedSqr;
+	float mu;
+	float maxLookAheadDist;
+	float allowedSpeed;
+	float lookAheadDist;
+
 	int m_iInitializeCalled;
 	int m_iTerminateCalled;
 	int m_iUpdateCalled;
@@ -32,6 +41,7 @@ public:
 	virtual void onInitialize()
 	{
 		++m_iInitializeCalled;
+		car = ai->carReference;
 	}
 
 	virtual void onTerminate(Status s)
@@ -44,11 +54,47 @@ public:
 	{
 		++m_iUpdateCalled;
 
-		std::cout << "BrakeNode\n";
 		BlackboardFloatType *brakeEntry = (BlackboardFloatType*)ai->blackboard.at(ai->brake);
-		brakeEntry->SetValue(0.0f);
 
-		return m_eReturnStatus;
+		segptr				= car->_trkPos.seg;
+		currentSpeedSqr		= car->_speed_x*car->_speed_x;
+		mu					= segptr->surface->kFriction;
+		maxLookAheadDist	= currentSpeedSqr / (2.0*mu*G);
+
+		lookAheadDist	= ai->getDistToSegEnd(car);
+		allowedSpeed	= ai->getAllowedSpeed(segptr);
+
+		if (allowedSpeed < car->_speed_x)
+		{
+			std::cout << "Braking\n";
+
+			brakeEntry->SetValue(1.0);
+		}
+
+		segptr = segptr->next;
+		if (lookAheadDist < maxLookAheadDist)
+		{
+			allowedSpeed = ai->getAllowedSpeed(segptr);
+			if (allowedSpeed < car->_speed_x)
+			{
+				float allowedSpeedSqr = allowedSpeed * allowedSpeed;
+				float brakeDist = (currentSpeedSqr - allowedSpeedSqr) / (2.0*mu*G);
+
+				if (brakeDist > lookAheadDist)
+				{
+					std::cout << "Braking\n";
+					brakeEntry->SetValue(1.0);
+					return BH_SUCCESS;
+				}
+			}
+
+			lookAheadDist += segptr->length;
+			segptr = segptr->next;
+		}
+
+		std::cout << "Brake check failed\n";
+		brakeEntry->SetValue(0.0f);
+		return BH_FAILURE;
 	}
 };
 

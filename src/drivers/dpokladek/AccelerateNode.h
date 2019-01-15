@@ -9,6 +9,8 @@
 class AccelerateNode : public Behavior
 {
 	AI *ai;
+	tCarElt *car;
+
 	int m_iInitializeCalled;
 	int m_iTerminateCalled;
 	int m_iUpdateCalled;
@@ -32,8 +34,9 @@ public:
 
 	virtual void onInitialize()
 	{
-		std::cout << "Accel init" << std::endl;
+		//std::cout << "Accel init" << std::endl;
 		++m_iInitializeCalled;
+		car = ai->carReference;
 	}
 
 	virtual void onTerminate(Status s)
@@ -46,11 +49,25 @@ public:
 	{
 		++m_iUpdateCalled;
 
-		std::cout << "AccelNode\n";
+		//std::cout << "AccelNode\n";
 		BlackboardFloatType *accelEntry = (BlackboardFloatType*)ai->blackboard.at(ai->accel);
-		accelEntry->SetValue(0.3f);
 
-		return m_eReturnStatus;
+		float gear = car->_gearRatio[car->_gear + car->_gearOffset];
+		float allowedSpeed = ai->getAllowedSpeed(car->_trkPos.seg);
+		float engineRedline = car->_enginerpmRedLine;
+
+		if (allowedSpeed > car->_speed_x + ai->FULL_ACCEL_MARGIN)
+		{
+			accelEntry->SetValue(1.0);
+			return BH_SUCCESS;
+		}
+		else
+		{
+			accelEntry->SetValue(allowedSpeed / car->_wheelRadius(REAR_RGT)*gear / engineRedline);
+			return BH_SUCCESS;
+		}
+
+		return BH_FAILURE;
 	}
 };
 

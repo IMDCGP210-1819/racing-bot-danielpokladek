@@ -17,10 +17,10 @@ public:
 	virtual ~BlackboardBaseType() {};
 };
 
-class BlackboaordBoolType : public BlackboardBaseType 
+class BlackboardBoolType : public BlackboardBaseType 
 {
 public:
-	BlackboaordBoolType(bool val) : value(val) {}
+	BlackboardBoolType(bool val) : value(val) {}
 	bool GetValue() { return value; }
 	void SetValue(bool val) { value = val; }
 
