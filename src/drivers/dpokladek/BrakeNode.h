@@ -61,7 +61,7 @@ public:
 		mu					= segptr->surface->kFriction;
 		maxLookAheadDist	= currentSpeedSqr / (2.0*mu*G);
 
-		lookAheadDist	= ai->getDistToSegEnd(car);
+		lookAheadDist	= ai->getDistToSegEnd();
 		allowedSpeed	= ai->getAllowedSpeed(segptr);
 
 		if (allowedSpeed < car->_speed_x)
@@ -78,7 +78,8 @@ public:
 			if (allowedSpeed < car->_speed_x)
 			{
 				float allowedSpeedSqr = allowedSpeed * allowedSpeed;
-				float brakeDist = (currentSpeedSqr - allowedSpeedSqr) / (2.0*mu*G);
+				float brakeDist = ai->mass*(currentSpeedSqr - allowedSpeedSqr) /
+									(2.0*(mu*G*ai->mass + allowedSpeedSqr*(ai->CA*mu + ai->CW)));
 
 				if (brakeDist > lookAheadDist)
 				{

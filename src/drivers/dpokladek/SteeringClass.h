@@ -49,12 +49,14 @@ public:
 	{
 		++m_iUpdateCalled;
 
-		angle = RtTrackSideTgAngleL(&(car->_trkPos)) - car->_yaw;
-		NORM_PI_PI(angle);
-		angle -= SC * car->_trkPos.toMiddle / car->_trkPos.seg->width;
+		BlackboardFloatType *steerEntry = (BlackboardFloatType*)ai->blackboard.at(ai->steerKey);
 
-		BlackboardFloatType *steerEntry = (BlackboardFloatType*)ai->blackboard.at(ai->steerAngle);
-		steerEntry->SetValue(angle);
+		float trackAngle = RtTrackSideTgAngleL(&(car->_trkPos));
+		angle = trackAngle - car->_yaw;
+		NORM_PI_PI(angle);
+
+		float _steerAngle = angle - car->_trkPos.toMiddle / car->_trkPos.seg->width;
+		steerEntry->SetValue(_steerAngle);
 
 		return m_eReturnStatus;
 	}

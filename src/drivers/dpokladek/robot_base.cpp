@@ -96,6 +96,11 @@ newrace(int index, tCarElt* car, tSituation *s)
 	_ai->initTree();
 	_ai->ai = _ai;
 	_ai->carReference = car;
+	
+	_ai->CARMASS = GfParmGetNum(car->_carHandle, SECT_CAR, PRM_MASS, NULL, 1000.0);
+	_ai->initCA();
+	_ai->initCW();
+	_ai->initTCLFilter();
 } 
 
 /* Drive during race. */
@@ -103,17 +108,6 @@ static void
 drive(int index, tCarElt* car, tSituation *s) 
 { 
 	_ai->drive(car);
-
-    //memset((void *)&car->ctrl, 0, sizeof(tCarCtrl)); 
-    //car->ctrl.brakeCmd = 1.0; /* all brakes on ... */ 
-    /*  
-     * add the driving code here to modify the 
-     * car->_steerCmd 
-     * car->_accelCmd 
-     * car->_brakeCmd 
-     * car->_gearCmd 
-     * car->_clutchCmd 
-     */ 
 }
 
 /* End of the current race */
