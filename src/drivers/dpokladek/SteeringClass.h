@@ -51,12 +51,22 @@ public:
 
 		BlackboardFloatType *steerEntry = (BlackboardFloatType*)ai->blackboard.at(ai->steerKey);
 
-		float trackAngle = RtTrackSideTgAngleL(&(car->_trkPos));
-		angle = trackAngle - car->_yaw;
-		NORM_PI_PI(angle);
+		//float trackAngle = RtTrackSideTgAngleL(&(car->_trkPos));
+		//angle = trackAngle - car->_yaw;
+		//NORM_PI_PI(angle);
 
-		float _steerAngle = angle - car->_trkPos.toMiddle / car->_trkPos.seg->width;
-		steerEntry->SetValue(_steerAngle);
+		//float _steerAngle = angle - car->_trkPos.toMiddle / car->_trkPos.seg->width;
+		//steerEntry->SetValue(_steerAngle);
+
+		float targetAngle;
+		v2d target = ai->getTargetPoint();
+
+		targetAngle = atan2(target.y - car->_pos_Y, target.x - car->_pos_X);
+		targetAngle -= car->_yaw;
+
+		NORM_PI_PI(targetAngle);
+
+		steerEntry->SetValue(targetAngle);
 
 		return m_eReturnStatus;
 	}

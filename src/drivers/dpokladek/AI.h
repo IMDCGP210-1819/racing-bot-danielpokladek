@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 
+#include "linalg.h"
 #include "car.h"
 #include "robot.h"
 #include "Blackboard.h"
@@ -14,6 +15,7 @@ public:
 
 	void initTree();
 	void initBlackboard();
+	void newRace(tCarElt* car);
 	void drive(tCarElt* car);
 	
 	/* UTILITY FUNCTIONS */
@@ -22,8 +24,10 @@ public:
 	
 	float getAllowedSpeed(tTrackSeg *segment);
 	float getDistToSegEnd();
-	float getAccel(tCarElt * car);
 
+	bool isStuck();
+	v2d getTargetPoint();
+	float filterTrack(float accel);
 	float filterABS(float brake);
 	float filterTCL(float accel);
 	float filterTCL_RWD();
@@ -37,24 +41,31 @@ public:
 	tCarElt* carReference;
 
 	/* BLACKBOARD KEYS */
-	const std::string gear			= "gearValue";
-	const std::string brake			= "brakeValue";
-	const std::string accel			= "accelValue";
-	const std::string steerKey		= "steerAngle";
-	const std::string car			= "carRef";
-	const std::string stuckBool		= "stuckBool";
+	const std::string gearKey			= "gearValue";
+	const std::string brakeKey			= "brakeValue";
+	const std::string accelKey			= "accelValue";
+	const std::string steerKey			= "steerAngle";
+	const std::string stuckKey			= "stuckBool";
 
-	AI *ai;
+	int MAX_UNSTUCK_COUNT;
 
-	const float SHIFT				= 0.9;
-	const float SHIFT_MARGIN		= 4.0;
-	const float G					= 9.81;
-	const float FULL_ACCEL_MARGIN	= 1.0;
-
+	static const float MAX_UNSTUCK_ANGLE;
+	static const float UNSTUCK_TIME_LIMIT;
+	static const float MAX_UNSTUCK_SPEED;
+	static const float MIN_UNSTUCK_DIST;
+	static const float SHIFT;
+	static const float SHIFT_MARGIN;
+	static const float FULL_ACCEL_MARGIN;
+	static const float G;
 	static const float ABS_SLIP;
 	static const float ABS_MINSPEED;
 	static const float TCL_MINSPEED;
 	static const float TCL_SLIP;
+	static const float LOOKAHEAD_CONST;
+	static const float LOOKAHEAD_FACTOR;
+	static const float WIDTHDIV;
+
+	int stuck;
 
 	float mass;
 	float CARMASS;

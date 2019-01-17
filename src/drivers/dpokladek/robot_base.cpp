@@ -92,15 +92,18 @@ static void
 newrace(int index, tCarElt* car, tSituation *s) 
 { 
 	_ai = new AI();
-	_ai->initBlackboard();
-	_ai->initTree();
-	_ai->ai = _ai;
 	_ai->carReference = car;
+	_ai->newRace(car);
+
+	//_ai->initBlackboard();
+	//_ai->initTree();
+	//_ai->ai = _ai;
+	//_ai->carReference = car;
 	
-	_ai->CARMASS = GfParmGetNum(car->_carHandle, SECT_CAR, PRM_MASS, NULL, 1000.0);
-	_ai->initCA();
-	_ai->initCW();
-	_ai->initTCLFilter();
+	//_ai->CARMASS = GfParmGetNum(car->_carHandle, SECT_CAR, PRM_MASS, NULL, 1000.0);
+	//_ai->initCA();
+	//_ai->initCW();
+	//_ai->initTCLFilter();
 } 
 
 /* Drive during race. */

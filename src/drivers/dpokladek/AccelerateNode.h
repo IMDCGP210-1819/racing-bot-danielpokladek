@@ -50,24 +50,32 @@ public:
 		++m_iUpdateCalled;
 
 		//std::cout << "AccelNode\n";
-		BlackboardFloatType *accelEntry = (BlackboardFloatType*)ai->blackboard.at(ai->accel);
+		BlackboardFloatType *accelEntry = (BlackboardFloatType*)ai->blackboard.at(ai->accelKey);
+		BlackboardBoolType *stuckEntry = (BlackboardBoolType*)ai->blackboard.at(ai->stuckKey);
 
-		float gear = car->_gearRatio[car->_gear + car->_gearOffset];
-		float allowedSpeed = ai->getAllowedSpeed(car->_trkPos.seg);
-		float engineRedline = car->_enginerpmRedLine;
-
-		if (allowedSpeed > car->_speed_x + ai->FULL_ACCEL_MARGIN)
+		if (stuckEntry->GetValue() == false)
 		{
-			accelEntry->SetValue(1.0);
-			return BH_SUCCESS;
+			float allowedSpeed = ai->getAllowedSpeed(car->_trkPos.seg);
+			float gear = car->_gearRatio[car->_gear + car->_gearOffset];
+			float engineRedline = car->_enginerpmRedLine;
+
+			if (allowedSpeed > car->_speed_x + ai->FULL_ACCEL_MARGIN)
+			{
+				accelEntry->SetValue(1.0);
+				return BH_SUCCESS;
+			}
+			else
+			{
+				accelEntry->SetValue(allowedSpeed / car->_wheelRadius(REAR_RGT)*gear / engineRedline);
+				return BH_SUCCESS;
+			}
 		}
 		else
 		{
-			accelEntry->SetValue(allowedSpeed / car->_wheelRadius(REAR_RGT)*gear / engineRedline);
-			return BH_SUCCESS;
+			BH_FAILURE;
 		}
 
-		return BH_FAILURE;
+		return BH_INVALID;
 	}
 };
 

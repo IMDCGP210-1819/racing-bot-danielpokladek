@@ -3,7 +3,7 @@
   <ItemGroup>
     <ClCompile Include="robot_base.cpp" />
     <ClCompile Include="AI.cpp">
-      <Filter>AI</Filter>
+      <Filter>AI\AI Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,13 +25,13 @@
     <Filter Include="AI\BehaviorTree\Tree States">
       <UniqueIdentifier>{022ae73f-74ba-424e-a264-9e351fb1f0ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI\AI Classes">
+      <UniqueIdentifier>{7cc99b67-6476-4fde-a674-3ceeca4f64e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blackboard.h">
       <Filter>AI\BehaviorTree\Blackboard</Filter>
-    </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>AI</Filter>
     </ClInclude>
     <ClInclude Include="AccelerateNode.h">
       <Filter>AI\BehaviorTree\Tree States</Filter>
@@ -83,6 +83,15 @@
     </ClInclude>
     <ClInclude Include="SteeringClass.h">
       <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="StuckNode.h">
+      <Filter>AI\BehaviorTree\Tree States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>AI\AI Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="linalg.h">
+      <Filter>AI\AI Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

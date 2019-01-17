@@ -41,25 +41,35 @@ public:
 	{
 		++m_iUpdateCalled;
 
-		BlackboardIntType *gearEntry = (BlackboardIntType*)ai->blackboard.at(ai->gear);
+		BlackboardIntType *gearEntry = (BlackboardIntType*)ai->blackboard.at(ai->gearKey);
+		BlackboardBoolType *stuckEntry = (BlackboardBoolType*)ai->blackboard.at(ai->stuckKey);
 
-		if (car->_gear <= 0)
+		if (stuckEntry->GetValue() == false)
 		{
-			gearEntry->SetValue(1);
-			return BH_SUCCESS;
+			if (car->_gear <= 0)
+			{
+				gearEntry->SetValue(1);
+				return BH_SUCCESS;
+			}
+
+			gr_up = car->_gearRatio[car->_gear + car->_gearOffset];
+			float omega = car->_enginerpmRedLine / gr_up;
+			float wr = car->_wheelRadius(2);
+
+			if (omega*wr*ai->SHIFT < car->_speed_x)
+			{
+				gearEntry->SetValue(car->_gear + 1);
+				return BH_SUCCESS;
+			}
+
+			return BH_FAILURE;
+		}
+		else
+		{
+			return BH_FAILURE;
 		}
 
-		gr_up = car->_gearRatio[car->_gear + car->_gearOffset];
-		float omega = car->_enginerpmRedLine / gr_up;
-		float wr = car->_wheelRadius(2);
-
-		if (omega*wr*ai->SHIFT < car->_speed_x)
-		{
-			gearEntry->SetValue(car->_gear + 1);
-			return BH_SUCCESS;
-		}
-
-		return BH_FAILURE;
+		return BH_INVALID;
 	}
 };
 
